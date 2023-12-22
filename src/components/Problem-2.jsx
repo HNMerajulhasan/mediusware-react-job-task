@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -10,12 +12,12 @@ const Problem2 = () => {
   const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
- 
+    
     axios.get('https://contact.mediusware.com/api/contacts/')
       .then(response => setAllContacts(response.data))
       .catch(error => console.error('Error fetching all contacts:', error));
 
-   
+
     axios.get('https://contact.mediusware.com/api/country-contacts/US/')
       .then(response => setUsContacts(response.data))
       .catch(error => console.error('Error fetching US contacts:', error));
@@ -29,7 +31,7 @@ const Problem2 = () => {
   };
 
   const handleSearch = contact => {
-    if (!searchText) return true;
+    if (!searchText) return true; // No search text, always show
     const digitPattern = /\d+/;
     const phoneDigits = contact.phone.match(digitPattern);
     return phoneDigits && phoneDigits.join('').includes(searchText);
